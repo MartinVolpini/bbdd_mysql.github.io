@@ -2,9 +2,9 @@
   "name": "conectandotodo",
   "version": "1.0.0",
   "description": "\"Conctandoel frontcon el back y la base de datos\"",
-  "main": "back.js",
+  "main": "index.js",
   "scripts": {
-    "test": "back.js"
+    "test": "index.js"
   },
   "author": "Martin Volpini",
   "license": "ISC",
