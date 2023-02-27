@@ -42,7 +42,7 @@ app.get('/', (req,res)=>{
 
     conexion.query('SELECT * from empleados', function (error, results, fields) {
         if (error) throw error;
-        //console.log('The solution is: '.blue, results);
+        // console.log('The solution is: '.blue, results);
         res.json( results );
       });
    
@@ -76,6 +76,44 @@ app.get('/', (req,res)=>{
 //     conexion.end();
     
 // })
+
+
+ /*---------------        -----BUSCO Y MUESTRO PARTE DE LA TABLA------------         ------------------- */
+app.post('/buscar', (req,res)=>{                                                      
+    
+    conexion.connect();
+
+    let _valor1 = req.body._nombre; let _valor2 = req.body._apellido; 
+    let _valor3 = req.body._email;
+
+    let a = 0; let b = 0; let c = 0;
+    _valor1.length == 0 ? a = a + 1 : "";
+    _valor2.length == 0 ? b = b + 1 : "";
+    _valor3.length == 0 ? c = c + 1 : "";
+
+    console.log(req.body, a, b, c)
+    // let require = (a + b + c == 0) ? `select * from empleados where nombre like "%${req.body._nombre}%" and apellido like "%${req.body._apellido}%" and email = ${req.body._email};`
+    //             : (a + b + c != 0  && a + b == 2) ? `select * from empleados 
+    //             where nombre like "%${req.body._nombre}%" 
+    //             // and apellido like "%${req.body._apellido}%"`:;
+
+    let consulta = [
+        `select * from empleados 
+        where nombre like "%${req.body._nombre}%" 
+        and apellido like "%${req.body._apellido}%" 
+        and email like "%${req.body._email}%";`,
+                    `SELECT * from empleados where id = ${req.body._email}`
+                ]
+    conexion.query(consulta[0], (error, results, fields) =>{
+        if (error) throw error;
+        console.log( "Resultado:".blue, results[0]);     
+        //set sql_safe_updates=0;
+        res.json( results );
+    })
+    
+    conexion.end();
+    
+})
 
  /*---------------        ------------ CARGO EMPLEADO------------         ------------------- */
  app.post('/add', (req, res)=>{                                                      

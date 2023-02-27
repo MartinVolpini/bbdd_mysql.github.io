@@ -1,7 +1,8 @@
 "use strict";
 
-const conteiner       = document.querySelector(".tecno-bd");
-const btn__addUser    = document.getElementById("form--btn_id");
+const conteiner_2   = document.querySelector(".tecno-bd_2");
+const btn_buscar    = document.getElementById("form--btn_buscar");
+
 
 //funcion crea la bbdd en el DOM
 
@@ -100,44 +101,60 @@ let addobj = (arg0, arg1, arg2 ,arg3) => {
     });
     
     /*  -----------  -----------   ----------------------   ---------  ------------ -----------*/
-    return conteiner.appendChild(div);
+    return conteiner_2.appendChild(div);
 }
-/*  -----------  -----------   ---------LLAMO Y CARGO LOS DATOS DE TODA LA BASE-------------         ------------ -----------*/
-
-    fetch(`http://localhost:3000/`) //`http://localhost:${app.get('port')}/`
-    .then(res => res.json())
-    .then(res => { for(let i = 0; i < res.length; i++){ addobj(res[i].id, res[i].nombre, res[i].apellido, res[i].email); } })
 
 /*  -----------  -----------   ---------AGREGAR  USUARIOS A LA BASE-------------         ------------ -----------*/
 
-btn__addUser.addEventListener("click",(e)=>{
+btn_buscar.addEventListener("click",(e)=>{
     e.preventDefault()
-    let _nombre = document.getElementById("form--name");
-    let _apellido = document.getElementById("form--lastname");
-    let _email = document.getElementById("form--email");
+    let _nombre = document.getElementById("form--name_buscar");
+    let _apellido = document.getElementById("form--lastname_buscar");
+    let _email = document.getElementById("form--email_buscar");
     
-    let options = {
-        method: "POST", 
-        body: JSON.stringify({
-            "_nombre": `${_nombre.value}`,
-            "_apellido": `${_apellido.value}`,
-            "_email": `${_email.value}`
-        }),
-        headers: {"Content-Type":"application/json"}
-    }
-    // console.log("btn alcanzado", options.body);
+    let a = _nombre.value.toUpperCase(); let b = _apellido.value.toUpperCase(); 
+    let c = _email.value.toUpperCase();
+    
+
+     console.log("btn alcanzado", a , b, c);
         
-    fetch(`http://localhost:3000/add`, options)
-        .then(res=>res.json()) 
-        .then(res=>{
-            console.log(res)
-            //location.href('./index.html')
-            location.reload()
-        }) 
+    fetch(`http://localhost:3000/`)
+        .then(res => res.json() )
+        .then(res => { 
+            // console.log(res , "Respuesta")
+            if(c.length > 0 ){
+                for(let i = 0; i < res.length; i++){ 
+                    // console.log("Iteracion de comparacion", res[i].nombre.toUpperCase() );
+                    if( res[i].nombre.toUpperCase() == a &&  res[i].apellido.toUpperCase() == b && res[i].email.toUpperCase() == c  ){ 
+                        return addobj( res[i].id, res[i].nombre, res[i].apellido, res[i].email )
+                    
+                    } 
+                }
+              
+            }
+            if(c.length == 0 ){
+                for(let i = 0; i < res.length; i++){ 
+                    // console.log("Iteracion de comparacion", res[i].nombre.toUpperCase() );
+                    if( res[i].nombre.toUpperCase() == a &&  res[i].apellido.toUpperCase() == b ){ 
+                        return addobj( res[i].id, res[i].nombre, res[i].apellido, res[i].email )
+                    
+                    } 
+                }
+              
+            }
+            let div = document.createElement("DIV"); div.classList.add("row-bd"); 
+            
+            let h2 = document.createElement("H2"); 
+            h2.innerText = `No se encontro el recurso`; 
+            h2.classList.add("bd_404");
+            
+            div.appendChild( h2 )
+
+            return conteiner_2.appendChild(div) 
+            
+        })
+
+            // location.reload()
+        
         
 })
-
-
-
-
-

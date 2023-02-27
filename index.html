@@ -4,15 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+
+     <!-- bootstrap core css -->
+     <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css" /> -->
+
+     <!-- fonts style -->
+     <link
+       href="https://fonts.googleapis.com/css?family=Poppins|Raleway:400,600|Righteous&display=swap"
+       rel="stylesheet"
+     />
+
+    <link rel="stylesheet" href="./css/style.css" >
+
     <title>Document</title>
+
 </head>
 <body>
-    <header class="header">
+
+    <!-- <header class="header">
         <h1>Conectando a MySQL</h1>
+        <a href="buscar.html" >
+            <button class="btn-buscar" >
+                Buscar
+            </button>      
+        </a>
+            
+       
+    </header> -->
+    <header class="header_section header">
         
-    </header>
+        <a class="navbar-brand" href="index.html">
+            <span class="header-title" >
+              Conectando a MySQL
+            </span>
+          </a>
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+         
+              <div
+                class="d-none d-lg-flex ml-auto flex-column flex-lg-row align-items-center mt-3"
+              >
+                
+                <ul class="navbar-nav  mr-5 ">
+                  <li class="nav-item mr-5">
+                    <a class="nav-link text-white " href="service.html">
+                      <span>Home</span>
+                    </a>
+                  </li>
+                  <li class="nav-item mr-5">
+                    <a class="nav-link text-white" href="./buscar.html">
+                      <span>Buscar</span>
+                    </a>
+                  </li>
+                </ul>
+
+              </div>
+
+              <div class="custom_menu-btn">
+                <button onclick="openNav()">
+                  <span class="s-item s-1"> </span>
+                  <span class="s-item s-2"> </span>
+                  <span class="s-item s-3"> </span>
+                </button>
+              </div>
+              <!-- <div id="myNav" class="overlay">
+                <div class="overlay-content">
+                  <a href="index.html">Home</a>
+                  <a href="about.html">About</a>
+                  <a href="feature.html">Features</a>
+                  <a href="contact.html">Contact Us</a>
+                </div>
+              </div> -->
+         
+          </nav>
+        
+      </header>
+
    <main class="container">
+    
     <div class="tecno-bd"></div>
     <form  class="form" >  <!-- action="/add/" method="POST" -->
         <h3 class="form--titulo">Caga de Empleados...</h3>
@@ -23,8 +91,10 @@
         <input type="reset"  value="Reset"  class="form--btn"         id="form--btn_reset" > 
     </form>
     
+    
    </main>
 
     <script src="front.js"></script>
+    <script src="./button-navbar.js"></script>
 </body>
 </html>
