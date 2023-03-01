@@ -4,7 +4,7 @@
   "description": "\"Conctandoel frontcon el back y la base de datos\"",
   "main": "index.js",
   "scripts": {
-    "test": "index.js"
+    "start": "node ./src/index.js"
   },
   "author": "Martin Volpini",
   "license": "ISC",
