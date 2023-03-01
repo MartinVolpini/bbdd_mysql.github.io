@@ -104,7 +104,7 @@ let addobj = (arg0, arg1, arg2 ,arg3) => {
 }
 /*  -----------  -----------   ---------LLAMO Y CARGO LOS DATOS DE TODA LA BASE-------------         ------------ -----------*/
 
-    fetch(`http://localhost:3000/`) //`http://localhost:${app.get('port')}/`
+    fetch(`https://bbddmysqlgithubio-production.up.railway.app/`) //`http://localhost:${app.get('port')}/`
     .then(res => res.json())
     .then(res => { for(let i = 0; i < res.length; i++){ addobj(res[i].id, res[i].nombre, res[i].apellido, res[i].email); } })
 
